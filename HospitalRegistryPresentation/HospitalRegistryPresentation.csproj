@@ -7,8 +7,8 @@
     <ProjectGuid>{E04559BC-868A-4074-8B3A-3CE1AFBB6542}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HospitalRegistry</RootNamespace>
-    <AssemblyName>HospitalRegistry</AssemblyName>
+    <RootNamespace>HospitalRegistryPresentation</RootNamespace>
+    <AssemblyName>HospitalRegistryPresentation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManageDoctorsUi.cs" />
+    <Compile Include="ManagePatientsUi.cs" />
+    <Compile Include="ManageScheduleUi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchUi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

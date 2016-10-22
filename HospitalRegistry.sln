@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistry", "HospitalRegistry\HospitalRegistry.csproj", "{E04559BC-868A-4074-8B3A-3CE1AFBB6542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryPresentation", "HospitalRegistryPresentation\HospitalRegistryPresentation.csproj", "{E04559BC-868A-4074-8B3A-3CE1AFBB6542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
