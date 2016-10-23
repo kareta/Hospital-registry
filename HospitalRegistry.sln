@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryPresentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryData", "HospitalRegistryData\HospitalRegistryData.csproj", "{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryRepositories", "HospitalRegistryRepositories\HospitalRegistryRepositories.csproj", "{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
