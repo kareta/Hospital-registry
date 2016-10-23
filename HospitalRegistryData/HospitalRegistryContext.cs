@@ -1,5 +1,5 @@
-﻿
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using HospitalRegistryData.Entities;
 
 namespace HospitalRegistryData
 {

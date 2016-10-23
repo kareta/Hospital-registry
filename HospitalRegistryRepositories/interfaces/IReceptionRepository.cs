@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HospitalRegistryData;
+﻿using HospitalRegistryData.Entities;
 
 namespace HospitalRegistryRepositories.interfaces
 {

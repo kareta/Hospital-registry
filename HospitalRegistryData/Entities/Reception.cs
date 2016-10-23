@@ -1,9 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HospitalRegistryData
+namespace HospitalRegistryData.Entities
 {
     public class Reception
     {

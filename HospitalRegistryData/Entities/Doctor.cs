@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace HospitalRegistryData
+namespace HospitalRegistryData.Entities
 {
     public class Doctor
     {
