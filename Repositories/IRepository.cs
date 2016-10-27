@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace HospitalRegistryRepositories.interfaces
+namespace HospitalRegistryRepositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {

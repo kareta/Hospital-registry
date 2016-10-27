@@ -5,15 +5,15 @@ namespace HospitalRegistryServices
 {
     public class PatientCardService
     {
-        private readonly PatientCardRecordRepository _patientCardRecordRepository
+        private readonly PatientCardRecordRepository patientCardRecordRepository
             = new PatientCardRecordRepository();
 
-        private readonly ReceptionRepository _receptionRepository
+        private readonly ReceptionRepository receptionRepository
             = new ReceptionRepository();
 
         public void StoreRecordFromString(string record)
         {
-            _patientCardRecordRepository.Add(RecordFromString(record));
+            patientCardRecordRepository.Add(RecordFromString(record));
         }
 
         public PatientCardRecord RecordFromString(string record)
@@ -24,7 +24,7 @@ namespace HospitalRegistryServices
             var diagnosis = splittedRecord[2];
             var prescription = splittedRecord[3];
 
-            var reception = _receptionRepository.Get(receptionId);
+            var reception = receptionRepository.Get(receptionId);
 
             return new PatientCardRecord
             {

@@ -1,4 +1,5 @@
-﻿using HospitalRegistryData.Entities;
+﻿using System.Text;
+using HospitalRegistryData.Entities;
 using HospitalRegistryRepositories.implementation;
 
 namespace HospitalRegistryServices
@@ -6,12 +7,6 @@ namespace HospitalRegistryServices
     public class PatientService
     {
         private PatientRepository patientRepository = new PatientRepository();
-
-        public void AddPatient(string name, string surname)
-        {
-            var patient = new Patient {Name = name, Surname = surname};
-            patientRepository.Add(patient);
-        }
 
         public Patient PatientFromString(string patientData)
         {
@@ -24,18 +19,32 @@ namespace HospitalRegistryServices
 
         public void SavePatientFromString(string patientData)
         {
-            var splittedData = patientData.Split(' ');
-            var name = splittedData[0];
-            var surname = splittedData[1];
+            patientRepository.Add(PatientFromString(patientData));
+        }
 
-            var patient = new Patient { Name = name, Surname = surname };
-            patientRepository.Add(patient);
+        public void UpdatePatientFromString(string patientData)
+        {
+
         }
 
         public void RemovePatient(int id)
         {
             var patient = patientRepository.Get(id);
             patientRepository.Remove(patient);
+        }
+
+        public string AllPatientsToString()
+        {
+            var patients = patientRepository.GetAll();
+            var builder = new StringBuilder();
+
+            foreach (var patient in patients)
+            {
+                builder.Append(patient.PatientId + " ");
+                builder.Append(patient.Name + " ");
+                builder.Append(patient.Surname + "\n");
+            }
+            return builder.ToString();
         }
     }
 }
