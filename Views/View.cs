@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using viewshospital.validators;
+using validators;
 
-namespace viewshospital.views
+namespace views
 {
     public class View : IView
     {

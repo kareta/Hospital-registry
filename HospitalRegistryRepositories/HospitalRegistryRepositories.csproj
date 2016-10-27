@@ -53,12 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="implementation\DoctorRepository.cs" />
-    <Compile Include="implementation\Repository.cs" />
     <Compile Include="interfaces\IDoctorRepository.cs" />
     <Compile Include="interfaces\IPatientCardRecordRepository.cs" />
     <Compile Include="interfaces\IPatientRepository.cs" />
     <Compile Include="interfaces\IReceptionRepository.cs" />
-    <Compile Include="interfaces\IRepository.cs" />
     <Compile Include="interfaces\ISpecializationRepository.cs" />
     <Compile Include="implementation\PatientCardRecordRepository.cs" />
     <Compile Include="implementation\PatientRepository.cs" />
@@ -69,6 +67,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

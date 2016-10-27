@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace viewshospital.validators
+namespace validators
 {
     public class Validator
     {

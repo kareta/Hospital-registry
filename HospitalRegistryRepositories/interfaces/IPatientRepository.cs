@@ -1,4 +1,5 @@
 ﻿using HospitalRegistryData.Entities;
+using Repositories;
 
 namespace HospitalRegistryRepositories.interfaces
 {

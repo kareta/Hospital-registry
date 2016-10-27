@@ -1,4 +1,4 @@
-﻿namespace viewshospital.views
+﻿namespace views
 {
     public interface IView
     {
