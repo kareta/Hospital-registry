@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace validators
 {
     public class Validator
     {
+        public const string RangePattern = @"range\([-+]?[0-9]*[.,]?[0-9]+ [-+]?[0-9]*[.,]?[0-9]+\)";
+
         //format-name pattern value
-        public List<string> GetErrorList(List<string> formats)
+        public List<string> GetErrorList(List<InputFormat> formats)
         {
             var errorList = new List<string>();
 
@@ -19,23 +23,47 @@ namespace validators
 
             foreach (var format in formats)
             {
-                var splittedFormat = format.Split(' ');
+                var formatIsCorrect = IsRange(format.Pattern) && RangeIsCorrect(format)
+                                      || ValueDoesMatch(format);
 
-                if (splittedFormat.Length != 3)
+                if (!formatIsCorrect)
                 {
-                    continue;
+                    errorList.Add(format.Name + " is incorrect");
                 }
-
-                var formatName = splittedFormat[0];
-                var pattern = splittedFormat[1];
-                var value = splittedFormat[2];
-
-                if (!Regex.IsMatch(value, pattern))
-                {
-                    errorList.Add(formatName + " is incorrect");
-                }
-            }
+            }    
             return errorList;
         }
+
+        public bool IsRange(string pattern)
+        {
+            return Regex.IsMatch(pattern, RangePattern);
+        }
+
+        public bool RangeIsCorrect(InputFormat format)
+        {
+            var regex = new Regex("[-+]?[0-9]*[.,]?[0-9]+");
+            var match = regex.Match(format.Pattern);
+
+            var lowerLimit = double.Parse(match.Groups[0].ToString(), CultureInfo.InvariantCulture);
+            match = match.NextMatch();
+            var upperLimit = double.Parse(match.Groups[0].ToString(), CultureInfo.InvariantCulture);
+
+            double value;
+            if (!double.TryParse(format.Value, out value))
+            {
+                return false;
+            }
+
+            return lowerLimit < value && value < upperLimit;
+        }
+
+        public bool ValueDoesMatch(InputFormat format)
+        {
+            return Regex.IsMatch(format.Value, format.Pattern);
+        }
     }
+
+    
 }
+
+

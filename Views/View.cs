@@ -1,8 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 using validators;
@@ -93,9 +91,9 @@ namespace views
             return viewNode["input-format"].InnerText;
         }
 
-        private List<string> GetFormats(string inputValues)
+        private List<InputFormat> GetFormats(string inputValues)
         {
-            var formats = new List<string>();
+            var formats = new List<InputFormat>();
 
             var viewNode = FindViewNode();
             var xmlElement = viewNode["input-format"];
@@ -110,11 +108,13 @@ namespace views
                 return null;
             }
 
-            for (int i = 0; i < splittedFormatNames.Length; i++)
+            for (var i = 0; i < splittedFormatNames.Length; i++)
             {
-                var format = splittedFormatNames[i]
-                             + " " + GetFormatPattern(splittedFormatNames[i])
-                             + " " + splittedValues[i];
+                var name = splittedFormatNames[i];
+                var pattern = GetFormatPattern(splittedFormatNames[i]);
+                var value = splittedValues[i];
+
+                var format = new InputFormat(name, pattern, value);              
                 formats.Add(format);
             }
 
