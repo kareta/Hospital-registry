@@ -41,6 +41,11 @@ namespace Repositories
             Context.SaveChanges();
         }
 
+        public void Update()
+        {
+            Context.SaveChanges();
+        }
+
         public void AddRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().AddRange(entities);

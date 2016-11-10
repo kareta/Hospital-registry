@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bundles">
+      <HintPath>..\Bundles\bin\Debug\Bundles.dll</HintPath>
+    </Reference>
     <Reference Include="HospitalRegistryRepositories">
       <HintPath>..\HospitalRegistryRepositories\bin\Debug\HospitalRegistryRepositories.dll</HintPath>
     </Reference>

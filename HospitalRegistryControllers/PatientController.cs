@@ -45,28 +45,66 @@ namespace HospitalRegistryControllers
 
         public void Add()
         {
-            View view = new View("Patients Add");
+            var view = new View("Patients Add");
             var data = view.Run();
             patientService.SavePatientFromString(data);
         }
 
         public void Delete()
         {
-            View view = new View("Patients Delete");
-            var data = view.Run();
-            var id = int.Parse(data);
-            patientService.RemovePatient(id);
+            var view = new View("Patients Delete");
+            var idString = view.Run();
+            int id;
+
+            if (int.TryParse(idString, out id))
+            {
+                patientService.RemovePatient(id);
+            }
         }
 
         public void Update()
         {
-            View view = new View("Patients Update");
-            view.Run();
+            var view = new View("Update Select Patient");
+             
+            var idString  = view.Run();
+            int id;
+
+            if (!int.TryParse(idString, out id))
+            {
+                return;
+            }
+
+            var selectOperationView = new View("Patients. Select What To Update");
+            var selectedOperation = selectOperationView.Run();
+
+            switch (selectedOperation)
+            {
+                case "1":
+                    UpdateName(id);
+                    break;
+                case "2":
+                    UpdateSurname(id);
+                    break;
+            }
+        }
+
+        public void UpdateName(int id)
+        {
+            var view = new View("Update Patient Name");
+            var name = view.Run();
+            patientService.UpdatePatientName(id, name);
+        }
+
+        public void UpdateSurname(int id)
+        {
+            var view = new View("Update Patient Surname");
+            var surname = view.Run();
+            patientService.UpdatePatientSurname(id, surname);
         }
 
         public void All()
         {
-            View view = new View("Patients All");
+            var view = new View("Patients All");
             var data = patientService.AllPatientsToString();
             view.Run(data);
         }
