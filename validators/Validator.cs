@@ -9,7 +9,7 @@ namespace validators
     public class Validator
     {
         public const string RangePattern = @"range\([-+]?[0-9]*[.,]?[0-9]+ [-+]?[0-9]*[.,]?[0-9]+\)";
-
+        public const string MultiwordPattern = @"MULTIWORD";
         //format-name pattern value
         public List<string> GetErrorList(List<InputFormat> formats)
         {
@@ -24,7 +24,7 @@ namespace validators
             foreach (var format in formats)
             {
                 var formatIsCorrect = IsRange(format.Pattern) && RangeIsCorrect(format)
-                                      || ValueDoesMatch(format);
+                    || IsMultiword(format.Pattern) || ValueDoesMatch(format);
 
                 if (!formatIsCorrect)
                 {
@@ -32,6 +32,16 @@ namespace validators
                 }
             }    
             return errorList;
+        }
+
+        public bool IsMultiword(string pattern)
+        {
+            return Regex.IsMatch(pattern, MultiwordPattern);
+        }
+
+        public bool MultiwordIsCorrect(InputFormat format)
+        {
+            return Regex.IsMatch(format.Value, ".+");
         }
 
         public bool IsRange(string pattern)

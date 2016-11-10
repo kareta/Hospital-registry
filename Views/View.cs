@@ -93,28 +93,74 @@ namespace views
 
         private List<InputFormat> GetFormats(string inputValues)
         {
-            var formats = new List<InputFormat>();
-
             var viewNode = FindViewNode();
             var xmlElement = viewNode["input-format"];
-            if (xmlElement == null) return formats;
-            var formatNames = xmlElement.InnerText;
 
-            var splittedFormatNames = formatNames.Split(' ');
-            var splittedValues = inputValues.Split(' ');
+            if (xmlElement == null)
+            {
+                return new List<InputFormat>();
+            }
 
-            if (splittedValues.Length != splittedFormatNames.Length)
+            var formatNames = xmlElement.InnerText.Split(' ');
+
+            var patterns = GetFormatPatterns(formatNames);
+            var splittedValues = SplitInputValues(inputValues, haveMultiword(patterns));
+                   
+            if (splittedValues.Length != formatNames.Length)
             {
                 return null;
             }
 
-            for (var i = 0; i < splittedFormatNames.Length; i++)
-            {
-                var name = splittedFormatNames[i];
-                var pattern = GetFormatPattern(splittedFormatNames[i]);
-                var value = splittedValues[i];
+            return CreateInputFormats(formatNames, patterns, splittedValues);
+        }
 
-                var format = new InputFormat(name, pattern, value);              
+        private bool haveMultiword(string[] patterns)
+        {
+            for (int i = 0; i < patterns.Length; i++)
+            {
+                if (patterns[i] == "MULTIWORD")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private string[] GetFormatPatterns(string[] formatNames)
+        {
+            var patterns = new string[formatNames.Length];
+            for (int i = 0; i < formatNames.Length; i++)
+            {
+                patterns[i] = GetFormatPattern(formatNames[i]);
+            }
+            return patterns;
+        }
+
+        private string[] SplitInputValues(string inputValues, bool isMultiword)
+        {
+            string[] splittedValues;
+
+            if (isMultiword)
+            {
+                inputValues = inputValues.Trim(']', '[');
+                splittedValues = inputValues.Split(
+                    new string[] { "] [" }, StringSplitOptions.None
+                );
+            }
+            else
+            {
+                splittedValues = inputValues.Split(' ');
+            }
+
+            return splittedValues;
+        }
+
+        private List<InputFormat> CreateInputFormats(string[] names, string[] patterns, string[] values)
+        {
+            var formats = new List<InputFormat>();
+            for (var i = 0; i < names.Length; i++)
+            {
+                var format = new InputFormat(names[i], patterns[i], values[i]);
                 formats.Add(format);
             }
 
