@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace validators
 {
@@ -23,8 +22,10 @@ namespace validators
 
             foreach (var format in formats)
             {
-                var formatIsCorrect = IsRange(format.Pattern) && RangeIsCorrect(format)
-                    || IsMultiword(format.Pattern) || ValueDoesMatch(format);
+                var formatIsCorrect = 
+                    IsRange(format.Pattern) && RangeIsCorrect(format)
+                    || IsMultiword(format.Pattern) && MultiwordIsCorrect(format) 
+                    || ValueDoesMatch(format);
 
                 if (!formatIsCorrect)
                 {

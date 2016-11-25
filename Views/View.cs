@@ -142,9 +142,9 @@ namespace views
 
             if (isMultiword)
             {
-                inputValues = inputValues.Trim(']', '[');
+                inputValues = inputValues.Trim('[', ']');
                 splittedValues = inputValues.Split(
-                    new string[] { "] [" }, StringSplitOptions.None
+                    new string[] { "] [", " [", " ]"}, StringSplitOptions.None
                 );
             }
             else

@@ -33,8 +33,6 @@ namespace HospitalRegistryControllers
                     break;
             }
             return exit;
-        }
-
-        
+        }  
     }
 }

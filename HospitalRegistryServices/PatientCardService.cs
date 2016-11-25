@@ -1,5 +1,7 @@
 ﻿using HospitalRegistryData.Entities;
 using HospitalRegistryRepositories.implementation;
+using System;
+using System.Text;
 
 namespace HospitalRegistryServices
 {
@@ -11,20 +13,33 @@ namespace HospitalRegistryServices
         private readonly ReceptionRepository receptionRepository
             = new ReceptionRepository();
 
-        public void StoreRecordFromString(string record)
+        public void StoreRecordFromString(string recordString)
         {
-            patientCardRecordRepository.Add(RecordFromString(record));
+            var record = RecordFromString(recordString);
+            if (record != null)
+            {
+                patientCardRecordRepository.Add(record);
+            }    
         }
 
         public PatientCardRecord RecordFromString(string record)
         {
-            var splittedRecord = record.Split('.');
+            record = record.Trim(']', '[');
+            var splittedRecord = record.Split(
+                new string[] { "] [" }, StringSplitOptions.None
+            );
+
             var receptionId = int.Parse(splittedRecord[0]);
             var symptoms = splittedRecord[1];
             var diagnosis = splittedRecord[2];
             var prescription = splittedRecord[3];
 
             var reception = receptionRepository.Get(receptionId);
+
+            if (reception == null)
+            {
+                return null;
+            }
 
             return new PatientCardRecord
             {
@@ -33,6 +48,25 @@ namespace HospitalRegistryServices
                 Prescription = prescription,
                 Reception = reception
             };
+        }
+
+        public string AllRecordsToString()
+        {
+            var records = patientCardRecordRepository.GetAll();
+            var builder = new StringBuilder();
+
+            foreach (var record in records)
+            {
+                var doctorName = record.Reception.Doctor.Name;
+                var doctorSurname = record.Reception.Doctor.Surname;
+
+                builder.AppendLine("Doctor name: " + doctorName);
+                builder.AppendLine("Doctor surname: " + doctorSurname);
+                builder.AppendLine("Symptoms: " + record.Symptoms);
+                builder.AppendLine("Diagnosis:" + record.Diagnosis);
+                builder.AppendLine(record.Prescription + "\n");
+            }
+            return builder.ToString();
         }
     }
 }
