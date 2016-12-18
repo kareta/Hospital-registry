@@ -43,6 +43,12 @@ namespace HospitalRegistryServices
         public void UpdatePatientName(int id, string name)
         {
             var patient = PatientRepository.Get(id);
+
+            if (patient == null)
+            {
+                return;
+            }
+
             patient.Name = name;
             PatientRepository.Update();
         }
@@ -50,6 +56,10 @@ namespace HospitalRegistryServices
         public void UpdatePatientSurname(int id, string surname)
         {
             var patient = PatientRepository.Get(id);
+            if (patient == null)
+            {
+                return;
+            }
             patient.Surname = surname;
             PatientRepository.Update();
         }
@@ -57,6 +67,10 @@ namespace HospitalRegistryServices
         public void RemovePatient(int id)
         {
             var patient = PatientRepository.Get(id);
+            if (patient == null)
+            {
+                return;
+            }
             PatientRepository.Remove(patient);
         }
 

@@ -46,6 +46,12 @@ namespace HospitalRegistryServices
         public void UpdateSpecializationTitle(int id, string title)
         {
             var specialization = SpecializationRepository.Get(id);
+
+            if (specialization == null)
+            {
+                return;
+            }
+
             specialization.Title = title;
             SpecializationRepository.Update();
         }
@@ -53,6 +59,12 @@ namespace HospitalRegistryServices
         public void UpdateSpecializationDescription(int id, string description)
         {
             var specialization = SpecializationRepository.Get(id);
+
+            if (specialization == null)
+            {
+                return;
+            }
+
             specialization.Description = description;
             SpecializationRepository.Update();
         }

@@ -51,6 +51,10 @@ namespace HospitalRegistryServices
         public void UpdateDoctorName(int id, string name)
         {
             var doctor = DoctorRepository.Get(id);
+            if (doctor == null)
+            {
+                return;
+            }
             doctor.Name = name;
             DoctorRepository.Update();
         }
@@ -58,6 +62,10 @@ namespace HospitalRegistryServices
         public void UpdateDoctorSurname(int id, string surname)
         {
             var doctor = DoctorRepository.Get(id);
+            if (doctor == null)
+            {
+                return;
+            }
             doctor.Surname = surname;
             DoctorRepository.Update();
         }
@@ -70,6 +78,12 @@ namespace HospitalRegistryServices
             }
 
             var doctor = DoctorRepository.Get(id);
+
+            if (doctor == null)
+            {
+                return;
+            }
+
             doctor.SpecializationId = specializationId;
             DoctorRepository.Update();
         }

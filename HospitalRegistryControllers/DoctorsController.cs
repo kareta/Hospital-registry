@@ -77,7 +77,7 @@ namespace HospitalRegistryControllers
                 return;
             }
 
-            var selectOperationView = new View("Doctors. Select What To Update");
+            var selectOperationView = new View("Doctor. Select What To Update");
             var selectedOperation = selectOperationView.Run();
 
             switch (selectedOperation)
@@ -110,7 +110,16 @@ namespace HospitalRegistryControllers
 
         public void UpdateSpecialization(int id)
         {
+            var view = new View("Update Specialization Id");
+            var specializationIdString = view.Run();
+            int specializationId;
 
+            if (!int.TryParse(specializationIdString, out specializationId))
+            {
+                return;
+            }
+
+            doctorService.UpdateDoctorSpecialization(id, specializationId);
         }
 
         public void All()
