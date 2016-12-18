@@ -21,7 +21,7 @@ namespace HospitalRegistryApp
             Bind<Controller>().To<SpecializationsController>().Named("SpecializationsController");
             Bind<Controller>().To<DoctorSearchController>().Named("DoctorSearchController");
             Bind<Controller>().To<PatientCardController>().Named("PatientCardController");
-            Bind<Controller>().To<SpecializationsController>().Named("PatientSearchController");
+            Bind<Controller>().To<PatientSearchController>().Named("PatientSearchController");
 
             Bind<IUnitOfWork>().
                 To<UnitOfWork>().

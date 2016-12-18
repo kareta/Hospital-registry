@@ -79,6 +79,52 @@ namespace HospitalRegistryServices
             var patientsEntities = PatientRepository.GetAll();
             var patients = Mapper.Map<List<Patient>>(patientsEntities);
 
+            return PatientsToString(patients);
+        }
+
+        public string ByNameToString(string name)
+        {
+            var patientsEntities = PatientRepository.Find(p => p.Name == name);
+            var patients = Mapper.Map<List<Patient>>(patientsEntities);
+
+            return PatientsToString(patients);
+        }
+
+        public string BySurnameToString(string surname)
+        {
+            var patientsEntities = PatientRepository.Find(p => p.Surname == surname);
+            var patients = Mapper.Map<List<Patient>>(patientsEntities);
+
+            return PatientsToString(patients);
+        }
+
+        public string ByNameSurnameToString(string data)
+        {
+            var splittedData = data.Split(' ');
+            if (splittedData.Length != 2)
+            {
+                return null;
+            }
+
+            var name = splittedData[0];
+            var surname = splittedData[1];
+
+            var patientsEntities = PatientRepository.Find(p => p.Surname == surname && p.Name == name);
+            var patients = Mapper.Map<List<Patient>>(patientsEntities);
+
+            return PatientsToString(patients);
+        }
+
+        public string ByIdToString(int id)
+        {
+            var patientsEntities = PatientRepository.Find(p => p.PatientId == id);
+            var patients = Mapper.Map<List<Patient>>(patientsEntities);
+
+            return PatientsToString(patients);
+        }
+
+        public string PatientsToString(List<Patient> patients)
+        {
             var builder = new StringBuilder();
 
             foreach (var patient in patients)
