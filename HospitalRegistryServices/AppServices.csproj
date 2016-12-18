@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A45A210D-7D61-4792-A871-55C737C2986B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C4D7615D-4BEC-4D5B-964F-AFC49AA08ED7}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HospitalRegistryApp</RootNamespace>
-    <AssemblyName>HospitalRegistryApp</AssemblyName>
+    <RootNamespace>HospitalRegistryServices</RootNamespace>
+    <AssemblyName>HospitalRegistryServices</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -37,20 +34,13 @@
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Bundles">
+      <HintPath>..\Bundles\bin\Debug\Bundles.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="HospitalRegistryRepositories">
+      <HintPath>..\HospitalRegistryRepositories\bin\Debug\HospitalRegistryRepositories.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,38 +50,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerModule.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DoctorService.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientCardRecord.cs" />
+    <Compile Include="Models\Reception.cs" />
+    <Compile Include="Models\Specialization.cs" />
+    <Compile Include="PatientCardService.cs" />
+    <Compile Include="PatientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="SpecializationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HospitalRegistryData\AppData.csproj">
+      <Project>{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}</Project>
+      <Name>AppData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\FrameworkRepositories.csproj">
+      <Project>{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}</Project>
+      <Name>FrameworkRepositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Controllers\Controllers.csproj">
-      <Project>{D7A71005-02F8-4560-89D1-095ACFE192DA}</Project>
-      <Name>Controllers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HospitalRegistryControllers\HospitalRegistryControllers.csproj">
-      <Project>{5671B99A-708C-4930-A8F0-7A8B7941BD53}</Project>
-      <Name>HospitalRegistryControllers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HospitalRegistryData\HospitalRegistryData.csproj">
-      <Project>{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}</Project>
-      <Name>HospitalRegistryData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HospitalRegistryRepositories\HospitalRegistryRepositories.csproj">
-      <Project>{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}</Project>
-      <Name>HospitalRegistryRepositories</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HospitalRegistryServices\HospitalRegistryServices.csproj">
-      <Project>{c4d7615d-4bec-4d5b-964f-afc49aa08ed7}</Project>
-      <Name>HospitalRegistryServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repositories\Repositories.csproj">
-      <Project>{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}</Project>
-      <Name>Repositories</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

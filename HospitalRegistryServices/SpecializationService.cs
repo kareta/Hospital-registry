@@ -72,6 +72,12 @@ namespace HospitalRegistryServices
         public void RemoveSpecialization(int id)
         {
             var specialization = SpecializationRepository.Get(id);
+
+            if (specialization == null)
+            {
+                return;
+            }
+
             SpecializationRepository.Remove(specialization);
         }
 

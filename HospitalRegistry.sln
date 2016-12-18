@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryData", "HospitalRegistryData\HospitalRegistryData.csproj", "{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppData", "HospitalRegistryData\AppData.csproj", "{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryRepositories", "HospitalRegistryRepositories\HospitalRegistryRepositories.csproj", "{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppRepositories", "HospitalRegistryRepositories\AppRepositories.csproj", "{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryServices", "HospitalRegistryServices\HospitalRegistryServices.csproj", "{C4D7615D-4BEC-4D5B-964F-AFC49AA08ED7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServices", "HospitalRegistryServices\AppServices.csproj", "{C4D7615D-4BEC-4D5B-964F-AFC49AA08ED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkRepositories", "Repositories\FrameworkRepositories.csproj", "{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Views", "Views\Views.csproj", "{31C38D3B-EB42-4E97-9B83-BE17BC36908D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkViews", "Views\FrameworkViews.csproj", "{31C38D3B-EB42-4E97-9B83-BE17BC36908D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "validators", "validators\validators.csproj", "{0DE690CC-29D5-4C05-B226-3F1924F71EF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkValidators", "validators\FrameworkValidators.csproj", "{0DE690CC-29D5-4C05-B226-3F1924F71EF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers", "Controllers\Controllers.csproj", "{D7A71005-02F8-4560-89D1-095ACFE192DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkControllers", "Controllers\FrameworkControllers.csproj", "{D7A71005-02F8-4560-89D1-095ACFE192DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryControllers", "HospitalRegistryControllers\HospitalRegistryControllers.csproj", "{5671B99A-708C-4930-A8F0-7A8B7941BD53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppControllers", "HospitalRegistryControllers\AppControllers.csproj", "{5671B99A-708C-4930-A8F0-7A8B7941BD53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalRegistryApp", "HospitalRegistryApp\HospitalRegistryApp.csproj", "{A45A210D-7D61-4792-A871-55C737C2986B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMain", "HospitalRegistryApp\AppMain.csproj", "{A45A210D-7D61-4792-A871-55C737C2986B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

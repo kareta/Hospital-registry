@@ -91,6 +91,10 @@ namespace HospitalRegistryServices
         public void RemoveDoctor(int id)
         {
             var doctor = DoctorRepository.Get(id);
+            if (doctor == null)
+            {
+                return;
+            }
             DoctorRepository.Remove(doctor);
         }
 
