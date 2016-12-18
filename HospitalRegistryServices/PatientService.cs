@@ -1,12 +1,21 @@
-﻿using System.Text;
-using HospitalRegistryData.Entities;
-using HospitalRegistryRepositories.implementation;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using AutoMapper;
+using HospitalRegistryRepositories;
+using HospitalRegistryRepositories.interfaces;
+using HospitalRegistryServices.Models;
 
 namespace HospitalRegistryServices
 {
-    public class PatientService
+    public class PatientService : Service
     {
-        private PatientRepository patientRepository = new PatientRepository();
+        private IPatientRepository PatientRepository;
+
+        public PatientService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+            PatientRepository = unitOfWork.PatientRepository;
+        }
 
         public Patient PatientFromString(string patientData)
         {
@@ -25,36 +34,37 @@ namespace HospitalRegistryServices
         public void SavePatientFromString(string patientData)
         {
             var patient = PatientFromString(patientData);
-            if (patient != null)
-            {
-                patientRepository.Add(patient);
-            }
-            
+            if (patient == null) return;
+
+            var patientEntity = Mapper.Map<HospitalRegistryData.Entities.Patient>(patient);
+            PatientRepository.Add(patientEntity);
         }
 
         public void UpdatePatientName(int id, string name)
         {
-            var patient = patientRepository.Get(id);
+            var patient = PatientRepository.Get(id);
             patient.Name = name;
-            patientRepository.Update();
+            PatientRepository.Update();
         }
 
         public void UpdatePatientSurname(int id, string surname)
         {
-            var patient = patientRepository.Get(id);
+            var patient = PatientRepository.Get(id);
             patient.Surname = surname;
-            patientRepository.Update();
+            PatientRepository.Update();
         }
 
         public void RemovePatient(int id)
         {
-            var patient = patientRepository.Get(id);
-            patientRepository.Remove(patient);
+            var patient = PatientRepository.Get(id);
+            PatientRepository.Remove(patient);
         }
 
         public string AllPatientsToString()
         {
-            var patients = patientRepository.GetAll();
+            var patientsEntities = PatientRepository.GetAll();
+            var patients = Mapper.Map<List<Patient>>(patientsEntities);
+
             var builder = new StringBuilder();
 
             foreach (var patient in patients)

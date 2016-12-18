@@ -1,17 +1,27 @@
 ﻿using controllers;
 using HospitalRegistryServices;
+using Ninject;
 using views;
 
 namespace HospitalRegistryControllers
 {
     public class PatientController : Controller
     {
-        private PatientCardController patientCardController = new PatientCardController();
-        private PatientSearchController patientSearchController = new PatientSearchController();
+        private Controller patientCardController;
+        private Controller patientSearchController;
 
-        private PatientService patientService = new PatientService();
+        private PatientService patientService;
 
-        public PatientController() : base("Patients") { }
+        public PatientController(
+            [Named("PatientCardController")] Controller patientCardController,
+            [Named("PatientSearchController")] Controller patientSearchController,
+            PatientService patientService
+        ) : base("Patients")
+        {
+            this.patientCardController = patientCardController;
+            this.patientSearchController = patientSearchController;
+            this.patientService = patientService;
+        }
 
         public override bool RunChoice(string choice)
         {

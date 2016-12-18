@@ -1,4 +1,5 @@
-﻿using HospitalRegistryData;
+﻿using System.Data.Entity;
+using HospitalRegistryData;
 using HospitalRegistryData.Entities;
 using HospitalRegistryRepositories.interfaces;
 using Repositories;
@@ -7,6 +8,6 @@ namespace HospitalRegistryRepositories.implementation
 {
     public class ReceptionRepository : Repository<Reception>, IReceptionRepository
     {
-        public ReceptionRepository() : base(new HospitalRegistryContext()) {}
+        public ReceptionRepository(DbContext context) : base(context) { }
     }
 }

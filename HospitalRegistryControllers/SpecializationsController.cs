@@ -6,9 +6,13 @@ namespace HospitalRegistryControllers
 {
     public class SpecializationsController : Controller
     {
-        private SpecializationService specializationService = new SpecializationService();
+        private SpecializationService specializationService;
 
-        public SpecializationsController() : base("Specializations") {}
+        public SpecializationsController(SpecializationService specializationService) 
+            : base("Specializations")
+        {
+            this.specializationService = specializationService;
+        }
 
         public override bool RunChoice(string choice)
         {

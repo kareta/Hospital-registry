@@ -3,12 +3,19 @@ using HospitalRegistryData.Entities;
 using HospitalRegistryRepositories.implementation;
 using System;
 using System.Text;
+using HospitalRegistryRepositories;
+using HospitalRegistryRepositories.interfaces;
 
 namespace HospitalRegistryServices
 {
-    public class SpecializationService
+    public class SpecializationService : Service
     {
-        private SpecializationRepository specializationRepository = new SpecializationRepository();
+        private ISpecializationRepository SpecializationRepository;
+
+        public SpecializationService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+            SpecializationRepository = unitOfWork.SpecializationRepository;
+        }
 
         public Specialization SpecializationFromString(string specializationData)
         {
@@ -32,33 +39,33 @@ namespace HospitalRegistryServices
             var specialization = SpecializationFromString(specializationData);
             if (specialization != null)
             {
-                specializationRepository.Add(specialization);
+                SpecializationRepository.Add(specialization);
             }
         }
 
         public void UpdateSpecializationTitle(int id, string title)
         {
-            var specialization = specializationRepository.Get(id);
+            var specialization = SpecializationRepository.Get(id);
             specialization.Title = title;
-            specializationRepository.Update();
+            SpecializationRepository.Update();
         }
 
         public void UpdateSpecializationDescription(int id, string description)
         {
-            var specialization = specializationRepository.Get(id);
+            var specialization = SpecializationRepository.Get(id);
             specialization.Description = description;
-            specializationRepository.Update();
+            SpecializationRepository.Update();
         }
 
         public void RemoveSpecialization(int id)
         {
-            var specialization = specializationRepository.Get(id);
-            specializationRepository.Remove(specialization);
+            var specialization = SpecializationRepository.Get(id);
+            SpecializationRepository.Remove(specialization);
         }
 
         public string AllSpecializationsToString()
         {
-            var specializations = specializationRepository.GetAll();
+            var specializations = SpecializationRepository.GetAll();
             var builder = new StringBuilder();
 
             foreach (var specialization in specializations)

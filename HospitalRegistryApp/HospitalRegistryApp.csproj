@@ -33,12 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -52,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +75,22 @@
     <ProjectReference Include="..\HospitalRegistryControllers\HospitalRegistryControllers.csproj">
       <Project>{5671B99A-708C-4930-A8F0-7A8B7941BD53}</Project>
       <Name>HospitalRegistryControllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalRegistryData\HospitalRegistryData.csproj">
+      <Project>{7A4DAF72-F5AB-438A-AF43-92CB823E11CC}</Project>
+      <Name>HospitalRegistryData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalRegistryRepositories\HospitalRegistryRepositories.csproj">
+      <Project>{AF1D53F4-F497-4CB5-BE19-6FD116E8CF0B}</Project>
+      <Name>HospitalRegistryRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HospitalRegistryServices\HospitalRegistryServices.csproj">
+      <Project>{c4d7615d-4bec-4d5b-964f-afc49aa08ed7}</Project>
+      <Name>HospitalRegistryServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{AA8D73C6-FF45-4FF1-8D3E-03E601D96DD9}</Project>
+      <Name>Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

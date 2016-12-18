@@ -2,23 +2,28 @@
 using HospitalRegistryRepositories.implementation;
 using System;
 using System.Text;
+using HospitalRegistryRepositories;
+using HospitalRegistryRepositories.interfaces;
 
 namespace HospitalRegistryServices
 {
-    public class PatientCardService
+    public class PatientCardService : Service
     {
-        private readonly PatientCardRecordRepository patientCardRecordRepository
-            = new PatientCardRecordRepository();
+        private IPatientCardRecordRepository PatientCardRecordRepository;
+        private IReceptionRepository ReceptionRepository;
 
-        private readonly ReceptionRepository receptionRepository
-            = new ReceptionRepository();
+        public PatientCardService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+            PatientCardRecordRepository = unitOfWork.PatientCardRecordRepository;
+            ReceptionRepository = unitOfWork.ReceptionRepository;
+        }
 
         public void StoreRecordFromString(string recordString)
         {
             var record = RecordFromString(recordString);
             if (record != null)
             {
-                patientCardRecordRepository.Add(record);
+                PatientCardRecordRepository.Add(record);
             }    
         }
 
@@ -34,7 +39,7 @@ namespace HospitalRegistryServices
             var diagnosis = splittedRecord[2];
             var prescription = splittedRecord[3];
 
-            var reception = receptionRepository.Get(receptionId);
+            var reception = ReceptionRepository.Get(receptionId);
 
             if (reception == null)
             {
@@ -52,7 +57,7 @@ namespace HospitalRegistryServices
 
         public string AllRecordsToString()
         {
-            var records = patientCardRecordRepository.GetAll();
+            var records = PatientCardRecordRepository.GetAll();
             var builder = new StringBuilder();
 
             foreach (var record in records)

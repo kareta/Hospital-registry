@@ -1,15 +1,27 @@
 ﻿using controllers;
+using Ninject;
 
 namespace HospitalRegistryControllers
 {
     public class MainController : Controller
     {
-        private DoctorsController doctorsController = new DoctorsController();
-        private PatientController patientController = new PatientController();
-        private ScheduleController scheduleController = new ScheduleController();
-        private SpecializationsController specializationsController = new SpecializationsController();
+        private Controller doctorsController;
+        private Controller patientController;
+        private Controller scheduleController;
+        private Controller specializationsController;
 
-        public MainController() : base("Main") { }
+        public MainController(
+            [Named("DoctorsController")]Controller doctorsController,
+            [Named("PatientController")]Controller patientController,
+            [Named("ScheduleController")]Controller scheduleController,
+            [Named("SpecializationsController")]Controller specializationsController
+        ) : base("Main")
+        {
+            this.doctorsController = doctorsController;
+            this.patientController = patientController;
+            this.scheduleController = scheduleController;
+            this.specializationsController = specializationsController;
+        }
 
         public override bool RunChoice(string choice)
         {

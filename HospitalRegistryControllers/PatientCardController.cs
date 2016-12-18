@@ -6,9 +6,12 @@ namespace HospitalRegistryControllers
 {
     public class PatientCardController : Controller
     {
-        private PatientCardService patientCardService = new PatientCardService();
+        private PatientCardService patientCardService;
 
-        public PatientCardController() : base("Patient Card") {}
+        public PatientCardController(PatientCardService patientCardService) : base("Patient Card")
+        {
+            this.patientCardService = patientCardService;
+        }
 
         public override bool RunChoice(string choice)
         {

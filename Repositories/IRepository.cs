@@ -12,6 +12,8 @@ namespace Repositories
 
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
+        void Update();
+
         void Add(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
 
