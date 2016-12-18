@@ -59,6 +59,7 @@
     <Compile Include="PatientCardService.cs" />
     <Compile Include="PatientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceptionService.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="SpecializationService.cs" />
   </ItemGroup>

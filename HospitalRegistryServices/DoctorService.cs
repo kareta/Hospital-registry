@@ -38,9 +38,9 @@ namespace HospitalRegistryServices
             };
         }
 
-        public void SaveDoctorFromString(string patientData)
+        public void SaveDoctorFromString(string data)
         {
-            var doctor = DoctorFromString(patientData);
+            var doctor = DoctorFromString(data);
             if (doctor != null)
             {
                 DoctorRepository.Add(doctor);
